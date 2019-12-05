@@ -85,6 +85,30 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'What to Expect in 2020',
+    date: 'Dec 4th 2019',
+    firstParagraph: `Lambda School is growing constantly. you sould expect consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+    et dolore magna aliqua. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Scelerisque eu ultrices vitae auctor. Id nibh 
+    tortor id aliquet lectus proin nibh. Congue quisque egestas diam in arcu. Feugiat vivamus at augue eget arcu dictum. Lectus quam id leo in. At quis 
+    risus sed vulputate odio ut. Quam elementum pulvinar etiam non quam lacus suspendisse. Non quam lacus suspendisse faucibus. Etiam dignissim diam quis enim. `,
+
+    secondParagraph: `Orci phasellus egestas tellus rutrum tellus pellentesque. Tortor condimentum lacinia quis vel eros donec. 
+    Vitae turpis massa sed elementum tempus egestas sed. Egestas quis ipsum suspendisse ultrices gravida. Ut faucibus pulvinar elementum integer. 
+    Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Posuere urna nec tincidunt praesent semper feugiat. 
+    Amet justo donec enim diam vulputate ut pharetra. Nibh sed pulvinar proin gravida hendrerit lectus a. 
+    Interdum varius sit amet mattis vulputate enim nulla aliquet. Sodales neque sodales ut etiam sit. Orci phasellus egestas tellus rutrum tellus pellentesque eu. 
+    Orci eu lobortis elementum nibh tellus. Nisl nunc mi ipsum faucibus vitae aliquet. Orci a scelerisque purus semper eget duis at tellus at. 
+    Nunc vel risus commodo viverra maecenas accumsan lacus vel. Quisque egestas diam in arcu cursus euismod.  `,
+
+    thirdParagraph: `Enim nulla aliquet porttitor lacus. Neque gravida in fermentum et sollicitudin. Nunc non blandit massa enim nec dui nunc mattis. 
+    Nunc non blandit massa enim. Fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque. Curabitur gravida arcu ac tortor. 
+    Neque convallis a cras semper auctor neque vitae. Nunc congue nisi vitae suscipit tellus mauris a diam. 
+    Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Convallis posuere morbi leo urna molestie at elementum eu. In hendrerit gravida rutrum quisque non. 
+    Aliquam vestibulum morbi blandit cursus risus. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Auctor eu augue ut lectus arcu bibendum at varius. 
+    Mattis enim ut tellus elementum. Lectus nulla at volutpat diam ut. Erat imperdiet sed euismod nisi porta lorem mollis aliquam ut. 
+    Vestibulum lorem sed risus ultricies tristique. Dictum at tempor commodo ullamcorper a.`
   }
 ];
 
@@ -98,6 +122,56 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+  */
+    function CreateArticles(articleData){
+      //build elements into ram
+      const createArticle = document.createElement('div');
+      const createTitle = document.createElement('h2');
+      let createAdate = document.createElement('p');
+      let createAdata = []
+      for(let i = 0; i < 3; i++)
+      {
+        createAdata.push(document.createElement('p'));
+      }
+      // console.log(createAdata);
+      const createExpandBtn = document.createElement('span');
+      
+      //set class names
+      createArticle.classList.add('article');
+      createAdate.classList.add('date');
+      createExpandBtn.classList.add('expandButton');
+
+      //structure artical
+      createArticle.appendChild(createTitle);
+      createArticle.appendChild(createAdate);
+      createAdata.forEach(el =>{
+        createArticle.appendChild(el);
+      })
+      createArticle.appendChild(createExpandBtn);
+      
+      //set txt content
+      
+      createTitle.textContent = articleData.title;
+      createAdate.textContent = articleData.date;
+      createAdata[0].textContent = articleData.firstParagraph;
+      createAdata[1].textContent = articleData.secondParagraph;
+      createAdata[2].textContent = articleData.thirdParagraph;
+      createExpandBtn.textContent = 'Exp';
+
+      createExpandBtn.addEventListener('click', event =>{
+        console.log('Button Clicked!', event.target);
+        createArticle.classList.toggle('article-open')
+      })
+
+      return createArticle;
+    }
+
+    const articals = document.querySelector('.articles');
+
+    data.forEach(ats=>{
+      articals.appendChild(CreateArticles(ats));
+    })
+  /*
 
   Hint: You will need to use createElement more than once here!
 
